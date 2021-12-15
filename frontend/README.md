@@ -1,4 +1,4 @@
-# tecpit-calendar
+# frontend
 
 ## Project setup
 ```
