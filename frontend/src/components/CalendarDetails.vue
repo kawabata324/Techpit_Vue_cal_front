@@ -1,22 +1,22 @@
 <template>
-  <div class="calendar">
-    <h1>Calendar</h1>
-    <ul v-for="event in events" :key="event.id">
-      <li>{{ event.name }}</li>
-    </ul>
-    <button @click="fetchEvents">fetchEvents</button>
-    <CalendarDetails />
+  <div>
+    <h1>CalendarDetails</h1>
+    <div v-for="event in events" :key="event.id">
+      <h2>{{ event.name }}</h2>
+      <p>start: {{ event.start }}</p>
+      <p>end: {{ event.end }}</p>
+      <p>description: {{ event.description }}</p>
+    </div>
+
+    <button type="submit" @click="fetchEvents">fetchEvents</button>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { computed, defineComponent } from "vue";
 import { useStore } from "vuex";
-import CalendarDetails from "./CalendarDetails.vue";
 
 export default defineComponent({
-  components: { CalendarDetails },
-  name: "Calendar",
   setup() {
     const store = useStore();
 
@@ -27,7 +27,6 @@ export default defineComponent({
     const fetchEvents = () => {
       store.dispatch("fetchEvents");
     };
-
     return {
       events,
       fetchEvents,
@@ -35,4 +34,3 @@ export default defineComponent({
   },
 });
 </script>
-<style scoped></style>
